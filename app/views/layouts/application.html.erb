@@ -14,9 +14,9 @@
 <div class="container">
   <%= yield %>
   <%= render 'layouts/footer' %>
+  <h4><%= debug(params) if Rails.env.development? %></h4>
 </div>
 
-<h3><%= params if Rails.env.development? %></h3>
 
 </body>
 </html>
