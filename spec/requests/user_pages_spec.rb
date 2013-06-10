@@ -11,8 +11,9 @@ describe "UserPages" do
 
 		it { should have_selector("h1", text: "Sign up")}
 		it { should have_selector("title", text: full_title('sign_up'))}
+		it { should have_link('Sign in', href: signin_path)}
 
-		describe "with invalid information" do
+			describe "with invalid information" do
 			it "should not create a user" do
 				expect { click_button submit }.not_to change(User, :count)
 			end
@@ -28,6 +29,11 @@ describe "UserPages" do
 
 			it "should create a user" do
 				expect { click_button submit }.to change(User, :count).by(1)
+			end
+
+			describe "after successful signup" do
+				before { visit root_url }
+				it { should have_link('Sign out', href: signout_path)}
 			end
 
 		end
