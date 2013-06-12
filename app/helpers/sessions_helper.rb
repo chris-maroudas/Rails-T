@@ -29,6 +29,13 @@ module SessionsHelper
 
 
 
+	def signed_in_user
+		unless signed_in?
+			store_location # If he isn't signed in, hold the requested url in a session
+			redirect_to signin_url, notice: "Please sign in."
+		end
+	end
+
 
 	def redirect_back_or(default)
 		redirect_to(session[:return_to] || default )
